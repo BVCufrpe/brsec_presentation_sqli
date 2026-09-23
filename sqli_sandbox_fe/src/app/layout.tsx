@@ -1,10 +1,21 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Orbitron, Chakra_Petch } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { AuthProvider } from "@/context/AuthContext";
 
 const inter = Inter({ subsets: ["latin"] });
+
+const orbitron = Orbitron({
+  subsets: ["latin"],
+  variable: '--font-orbitron'
+});
+
+const chakra = Chakra_Petch({
+  weight: ['400','600'],
+  subsets: ["latin"],
+  variable: '--font-chakra'
+});
 
 export const metadata: Metadata = {
   title: "PwnAcademy - SQLi Sandbox",
@@ -16,7 +27,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} min-h-screen flex flex-col bg-zinc-50`}>
+      <body className={`${inter.className} ${orbitron.variable} ${chakra.variable} min-h-screen flex flex-col bg-zinc-50`}>
         {/* Everything inside the body MUST be inside the AuthProvider */}
         <AuthProvider>
           <Navbar />

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import Image from 'next/image';
 
 export default function CoursesPage() {
   const { user } = useAuth();
@@ -46,9 +47,7 @@ export default function CoursesPage() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {courses.map((course) => (
           <Card key={course.uuid} className="flex flex-col">
-            <div className="h-40 bg-zinc-200 rounded-t-lg flex items-center justify-center text-zinc-500">
-              [ Course Image ]
-            </div>
+            <Image src={course.thumb_url} alt={course.name} width={400} height={225} className="w-full h-40 object-cover"/>
             <CardHeader>
               <CardTitle>{course.name}</CardTitle>
               <CardDescription>{course.description}</CardDescription>

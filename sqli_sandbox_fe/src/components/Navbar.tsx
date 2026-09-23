@@ -33,7 +33,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="flex items-center justify-between p-4 bg-zinc-900 text-white shadow-md">
+    <nav className="flex items-center justify-between p-4 bg-slate-950 text-white">
       <div className="flex gap-6 items-center">
         <Link href="/" className="text-xl font-bold text-blue-400">PwnAcademy</Link>
         <Link href="/courses" className="hover:text-blue-300 transition">Courses</Link>
