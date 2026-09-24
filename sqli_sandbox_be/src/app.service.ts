@@ -13,6 +13,7 @@ export class AppService {
       user: this.configService.get<string>('DB_USER'),
       password: this.configService.get<string>('DB_PASSWORD'),
       database: this.configService.get<string>('DB_NAME'),
+      multipleStatements: true, // isso aqui permite que os coleguinhas façam queries no select component p dropar tables e tals
     });
   }
 
@@ -31,13 +32,18 @@ export class AppService {
     }
   }
 
-  async getCourses(): Promise<any>{
-    const query = `SELECT * FROM courses WHERE deletedAt is NULL`;
+  async getCourses(category?: string): Promise<any>{
+    let query = `SELECT * FROM courses WHERE deletedAt is NULL`;
+
+    if (category){
+      query += ` AND name LIKE '%${category}%'`;
+    }
+
     try {
       const [rows] = await this.pool.query(query);
-      return {success: true, data: rows};
+      return {success: true,query: query,data: rows};
     } catch(error: any){
-      return {success: false, error: error.message};
+      return {success: false, query:query, error: error.message};
     }
   }
 

@@ -23,8 +23,8 @@ export class AppController {
 
   // GET all courses - THIS IS THE ROUTE THAT WAS MISSING OR FAILING
   @Get('courses')
-  async getCourses() {
-    return this.appService.getCourses();
+  async getCourses(@Query('category') category?: string) {
+    return this.appService.getCourses(category);
   }
 
   @Delete('courses/:uuid')
