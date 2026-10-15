@@ -1,4 +1,4 @@
-import { Controller, Get, Query, Put, Delete, Param, Body } from '@nestjs/common';
+import { Controller, Get,Post, Query, Put, Delete, Param, Body } from '@nestjs/common';
 import { AppService } from './app.service.js';
 
 @Controller()
@@ -21,12 +21,17 @@ export class AppController {
     return this.appService.updateCourse(uuid, body.name, body.description, body.price);
   }
 
+  @Post('login')
+  async login(@Body() body: {username?: string; password?: string;}){
+    return this.appService.login(body.username || '', body.password || '');
+  }
+
   // GET all courses - THIS IS THE ROUTE THAT WAS MISSING OR FAILING
   @Get('courses')
   async getCourses() {
     return this.appService.getCourses();
   }
-
+ 
   @Delete('courses/:uuid')
   async deleteCourse(@Param('uuid') uuid:string){
     return this.appService.deleteCourse(uuid);

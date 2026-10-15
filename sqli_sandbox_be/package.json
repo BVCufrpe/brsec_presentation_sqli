@@ -13,6 +13,7 @@
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
+    "db:init": "sudo mariadb -u root < db_init_script.sql",
     "start:prod": "node dist/main",
     "lint": "oxlint src/ test/",
     "test": "vitest run",

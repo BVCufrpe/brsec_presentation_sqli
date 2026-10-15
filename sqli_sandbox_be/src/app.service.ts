@@ -16,6 +16,18 @@ export class AppService {
     });
   }
 
+  async login (username:string, password:string) {
+    const query = `SELECT * FROM users WHERE username='${username}' AND password='${password}'`
+
+     try {
+       const [rows]= await this.pool.query(query);
+      return {success:true, data:rows};
+    }
+      catch (error:any){
+        return {success: false, error: error.message};
+    }
+  }
+
   async searchUsers(username: string): Promise<any> {
     const query = `SELECT uuid, username, isAdmin FROM users WHERE username='${username}'`;
 
